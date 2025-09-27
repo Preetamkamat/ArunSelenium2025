@@ -2,7 +2,7 @@ package com.selenium.basicconcepts;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -10,8 +10,8 @@ import java.time.Duration;
 public class Demo {
     public static void main(String[] args) {
 
-        //WebDriver driver = new EdgeDriver();
-        WebDriver driver = new InternetExplorerDriver();
+        WebDriver driver = new EdgeDriver();
+        // WebDriver driver = new InternetExplorerDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://omayo.blogspot.com/");
