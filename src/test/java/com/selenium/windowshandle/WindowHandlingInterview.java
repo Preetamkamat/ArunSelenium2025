@@ -4,10 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-import java.time.Duration;
 import java.util.Set;
 
-public class WindowHandlingConceptOne {
+public class WindowHandlingInterview {
     public static void main(String[] args) {
         WebDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
@@ -15,23 +14,22 @@ public class WindowHandlingConceptOne {
 
         String parentWindow = driver.getWindowHandle();
 
-        driver.findElement(By.id("selenium143")).click();
+        driver.findElement(By.xpath("//p[normalize-space()='Open a popup window']")).click();
 
         Set<String> windows = driver.getWindowHandles();
 
         String childWindow = null;
-
         for (String window : windows) {
             if (!window.equals(parentWindow)) {
                 childWindow = window;
+                driver.switchTo().window(childWindow);
                 driver.close();
                 break;
+            } else if (!parentWindow.equals(window)) {
+                driver.switchTo().window(childWindow);
+                driver.close();
+
             }
         }
-
-        driver.switchTo().window(childWindow);
-
-        driver.findElement(By.linkText("What is Selenium?")).click();
-        driver.quit();
     }
 }
