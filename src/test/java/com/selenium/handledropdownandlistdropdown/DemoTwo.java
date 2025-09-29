@@ -7,20 +7,23 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.List;
 
-public class DemoOne {
+public class DemoTwo {
     public static void main(String[] args) {
         WebDriver driver = new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://omayo.blogspot.com/");
-        WebElement dropdown = driver.findElement(By.id("drop1"));
-        Select select = new Select(dropdown);
-        select.selectByVisibleText("doc 3");
-        select.selectByIndex(2);
-        select.selectByValue("mno");
-        boolean b = select.isMultiple();
-        System.out.println(b);
+        WebElement dropdownField = driver.findElement(By.id("multiselect1"));
+
+        Select select = new Select(dropdownField);
+
+        List<WebElement> options = select.getOptions();
+        for (WebElement option : options) {
+            System.out.println(option.getText());
+        }
+
         driver.quit();
     }
 }
